@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /job/
+
+# Serve public files directly
+RewriteRule ^public/(.*)$ public/$1 [L]
+
+# API routes
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Default: serve from public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/$1 [L]
